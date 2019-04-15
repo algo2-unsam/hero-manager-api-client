@@ -7,12 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
-
 public class RestService {
 
-	protected JsonArray get(String uri) {
+	protected String get(String uri) {
 		try {
 			
 			URL url = new URL(uri);
@@ -28,7 +25,7 @@ public class RestService {
 			String apiOutput = br.readLine();
 			conn.disconnect();
 	
-			return new JsonParser().parse(apiOutput).getAsJsonArray();
+			return apiOutput;
 	
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -36,7 +33,7 @@ public class RestService {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return "";
 	}
 
 }
